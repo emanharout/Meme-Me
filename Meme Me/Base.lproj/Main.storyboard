@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,41 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2QQ-z1-WfM">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Pick" id="kz1-4f-UVe">
+                                        <connections>
+                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="8we-MT-4NL"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-9H-yty">
+                                <rect key="frame" x="150" y="236" width="300" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ujm-0t-kac"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2QQ-z1-WfM" firstAttribute="top" secondItem="yGf-9H-yty" secondAttribute="bottom" constant="192" id="2mk-K2-JGc"/>
+                            <constraint firstItem="2QQ-z1-WfM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="VkY-2k-xmq"/>
+                            <constraint firstItem="yGf-9H-yty" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ya6-9D-M3T"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2QQ-z1-WfM" secondAttribute="bottom" id="aId-gL-lXr"/>
+                            <constraint firstItem="yGf-9H-yty" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cRS-je-obF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2QQ-z1-WfM" secondAttribute="trailing" constant="-20" id="diQ-ck-RZc"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imagePickerView" destination="yGf-9H-yty" id="NNn-6O-Ey1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="302" y="429"/>
         </scene>
     </scenes>
 </document>
