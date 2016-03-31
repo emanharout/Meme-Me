@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imagePickerView: UIImageView!
-
+    
     
     @IBAction func pickAnImage(sender: AnyObject) {
         selectImageSourceAlert()
@@ -18,7 +18,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        print("viewDidAppear")
     }
     
     func selectImageSourceAlert() {
@@ -27,9 +32,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             _ in
             self.presentImagePicker(pickerStyle: .PhotoLibrary)
         }
+        
         let useCamera = UIAlertAction(title: "Camera", style: .Default) {
             _ in
-            self.presentImagePicker(pickerStyle: .Camera)
+            // TODO: Check if camera isn't available, skip action
+            let x = UIImagePickerController.isSourceTypeAvailable(.Camera)
+            print(x)
+            if x {
+                self.presentImagePicker(pickerStyle: .Camera)
+            } else {
+                print("No camera available")
+            }
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
@@ -42,20 +56,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func presentImagePicker(pickerStyle style: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
         imagePicker.sourceType = style
         imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
+        
+        
+        self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     // MARK: - ImagePicker Protocol
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
         
         if let image = info["UIImagePickerControllerEditedImage"] as? UIImage {
             imagePickerView.image = image
         }
-        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
