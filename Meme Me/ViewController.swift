@@ -42,10 +42,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.textAlignment = .Center
+        topTextField.hidden = true
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
-        
-
+        bottomTextField.hidden = true
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,28 +68,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Select Image Alert
     func selectImageSourceAlert() {
+        // Setup alert and actions
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         let userLibrary = UIAlertAction(title: "Photo Library", style: .Default) {
             _ in
             self.presentImagePicker(pickerStyle: .PhotoLibrary)
         }
-        
         let useCamera = UIAlertAction(title: "Camera", style: .Default) {
             _ in
-            // TODO: Check if camera isn't available, skip action
-            let cameraAvailable = UIImagePickerController.isSourceTypeAvailable(.Camera)
-            if cameraAvailable {
-                self.presentImagePicker(pickerStyle: .Camera)
-            } else {
-                // TODO: Ask user for permission to use camera
-                print("No camera available")
-            }
-            
+            self.presentImagePicker(pickerStyle: .Camera)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
+        
         alert.addAction(userLibrary)
-        alert.addAction(useCamera)
+        let cameraAvailable = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        
+        // TODO: Create a switch statement that determines whether camera is available/we have permission to access it. Present regular Alert asking for permission if restricted.
+        if cameraAvailable {
+            alert.addAction(useCamera)
+        }
         alert.addAction(cancelAction)
         
         presentViewController(alert, animated: true, completion: nil)
@@ -154,6 +152,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             // Reset views to fit any image size
             memeImageViewHeightConstraint.constant = 736.0
             memeContainerHeightConstraint.constant = memeImageViewHeightConstraint.constant
+            topTextField.hidden = false
+            bottomTextField.hidden = false
             self.view.layoutIfNeeded()
             
             memeImageView.image = image
