@@ -31,10 +31,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func shareMeme(sender: AnyObject) {
-        
-    }
-    @IBAction func saveMeme(sender: AnyObject) {
-        save()
+        memedImage = generateMemedImage()
+        let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        presentViewController(activityViewController, animated: true, completion: nil)
+        activityViewController.completionWithItemsHandler = {
+            _ in
+            self.save()
+        }
     }
     
     override func viewDidLoad() {
@@ -95,28 +98,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: - Meme
     func save() {
-        let memedImage = generateMemedImage()
-        
         //Create a Meme object
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: memeImageView.image!, memedImage: memedImage)
         
-        memeImageView.image = memedImage
-        
-        // TODO: Save Meme to array
+        //memeImageView.image = memedImage
         memeList.append(meme)
+        
+        print("Saved")
     }
     
-    func generateMemedImage() -> UIImage
-    {
-        
-//        UIGraphicsBeginImageContext(self.memeContainerView.bounds.size)
-//        let context = UIGraphicsGetCurrentContext()
-//        
-//        memeContainerView.layer.drawInContext(context!)
-//        let memedImage = UIGraphicsGetImageFromCurrentImageContext()
-//        
-//        UIGraphicsEndImageContext()
-//        UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
+    func generateMemedImage() -> UIImage {
         
         // Create image
         UIGraphicsBeginImageContextWithOptions(memeContainerView.bounds.size, true, 0.0)
@@ -125,7 +116,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         // Save image to photos album
-        UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
+        // UIImageWriteToSavedPhotosAlbum(memedImage, nil, nil, nil)
         
         return memedImage
     }

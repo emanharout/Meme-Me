@@ -72,11 +72,6 @@
                                             <action selector="shareMeme:" destination="BYZ-38-t0r" id="KpT-p6-9zi"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Save" id="1gg-8d-OuM">
-                                        <connections>
-                                            <action selector="saveMeme:" destination="BYZ-38-t0r" id="sD6-DR-Izy"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
