@@ -53,7 +53,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -97,6 +96,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     // MARK: - Meme
+    
     func save() {
         //Create a Meme object
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: memeImageView.image!, memedImage: memedImage)
@@ -140,12 +140,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         picker.dismissViewControllerAnimated(true, completion: nil)
         
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            // Reset views to fit any image size
+            // Adjust view fit any image size
             memeImageViewHeightConstraint.constant = 736.0
             memeContainerHeightConstraint.constant = memeImageViewHeightConstraint.constant
             topTextField.hidden = false
             bottomTextField.hidden = false
-            self.view.layoutIfNeeded()
+            view.layoutIfNeeded()
             
             memeImageView.image = image
 
