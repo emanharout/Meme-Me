@@ -67,6 +67,7 @@
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="goM-3D-eKE"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="cFx-VW-vNL"/>
                                     <barButtonItem systemItem="action" id="V1r-UW-9IO">
                                         <connections>
                                             <action selector="shareMeme:" destination="BYZ-38-t0r" id="KpT-p6-9zi"/>

@@ -37,6 +37,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         activityViewController.completionWithItemsHandler = {
             _ in
             self.save()
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
