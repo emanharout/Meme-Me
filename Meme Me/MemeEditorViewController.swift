@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var memeContainerView: UIView!
     @IBOutlet weak var memeImageView: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
@@ -16,7 +16,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var memeImageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var memeContainerHeightConstraint: NSLayoutConstraint!
     var memedImage: UIImage!
-    var memeList = [Meme]()
     
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
@@ -24,7 +23,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : -5.0
     ]
-    
+
     
     @IBAction func pickAnImage(sender: AnyObject) {
         selectImageSourceAlert()
@@ -102,10 +101,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //Create a Meme object
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: memeImageView.image!, memedImage: memedImage)
         
-        //memeImageView.image = memedImage
-        memeList.append(meme)
+        // Save to memes array
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.memes.append(meme)
         
-        print("Saved")
     }
     
     func generateMemedImage() -> UIImage {
@@ -171,8 +170,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: - Keyboard Show/Hide Notification
     
-    // TODO: Return key dismisses keyboard
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -202,8 +199,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func subscribeToKeyboardNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
