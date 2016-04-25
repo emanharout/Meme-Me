@@ -17,6 +17,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var memeContainerHeightConstraint: NSLayoutConstraint!
     var memedImage: UIImage!
     
+    
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -36,6 +37,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         activityViewController.completionWithItemsHandler = {
             _ in
             self.save()
+            // TODO: Dismiss only ActivityVC, not MemeEditorVC
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

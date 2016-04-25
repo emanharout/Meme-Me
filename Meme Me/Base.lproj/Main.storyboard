@@ -144,7 +144,7 @@
                                                         <constraint firstAttribute="width" constant="88" id="XZ1-Hu-4hz"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cAQ-ju-A5r">
+                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cAQ-ju-A5r">
                                                     <rect key="frame" x="104" y="19" width="42" height="57"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-18-uib">
@@ -153,7 +153,7 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-wU-Lel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-wU-Lel">
                                                             <rect key="frame" x="0.0" y="36" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -205,10 +205,10 @@
             </objects>
             <point key="canvasLocation" x="821" y="268"/>
         </scene>
-        <!--View Controller-->
+        <!--Sent Memes Collection View Controller-->
         <scene sceneID="1ev-gN-tGN">
             <objects>
-                <viewController id="wWa-cv-Y7T" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="wWa-cv-Y7T" customClass="SentMemesCollectionViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SAl-Av-cL9"/>
                         <viewControllerLayoutGuide type="bottom" id="xEa-BA-e4w"/>
@@ -216,9 +216,77 @@
                     <view key="view" contentMode="scaleToFill" id="xec-17-csa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ewz-hC-W1p">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9N9-Xy-YYc">
+                                    <size key="itemSize" width="123" height="123"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionMemeCell" id="LGL-HO-9Ra" customClass="MemeCollectionViewCell" customModule="Meme_Me" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="123" height="123"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GeR-1m-vYs">
+                                                    <rect key="frame" x="0.0" y="8" width="123" height="115"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXF-aY-9tH">
+                                                    <rect key="frame" x="41" y="28" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMf-0B-jW8">
+                                                    <rect key="frame" x="41" y="74" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="GeR-1m-vYs" firstAttribute="leading" secondItem="LGL-HO-9Ra" secondAttribute="leading" id="6tk-Vu-tse"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="wMf-0B-jW8" secondAttribute="bottom" constant="20" id="73b-dJ-F3U"/>
+                                            <constraint firstItem="TXF-aY-9tH" firstAttribute="centerX" secondItem="LGL-HO-9Ra" secondAttribute="centerX" id="7HE-YG-r9h"/>
+                                            <constraint firstItem="TXF-aY-9tH" firstAttribute="top" secondItem="LGL-HO-9Ra" secondAttribute="topMargin" constant="20" id="970-FA-mEt"/>
+                                            <constraint firstAttribute="bottom" secondItem="GeR-1m-vYs" secondAttribute="bottom" id="SP8-Q8-D3b"/>
+                                            <constraint firstItem="wMf-0B-jW8" firstAttribute="centerX" secondItem="LGL-HO-9Ra" secondAttribute="centerX" id="m4J-Me-G1X"/>
+                                            <constraint firstItem="GeR-1m-vYs" firstAttribute="top" secondItem="LGL-HO-9Ra" secondAttribute="topMargin" id="trD-EZ-pnY"/>
+                                            <constraint firstAttribute="trailing" secondItem="GeR-1m-vYs" secondAttribute="trailing" id="wN8-sk-K6u"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="bottomTextLabel" destination="wMf-0B-jW8" id="buf-2P-stJ"/>
+                                            <outlet property="memeImage" destination="GeR-1m-vYs" id="KgK-WX-r17"/>
+                                            <outlet property="topTextLabel" destination="TXF-aY-9tH" id="jrK-WM-m1N"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="wWa-cv-Y7T" id="5wq-If-hf8"/>
+                                    <outlet property="delegate" destination="wWa-cv-Y7T" id="gKz-Qf-f72"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xEa-BA-e4w" firstAttribute="top" secondItem="ewz-hC-W1p" secondAttribute="bottom" id="KAm-US-avv"/>
+                            <constraint firstAttribute="trailing" secondItem="ewz-hC-W1p" secondAttribute="trailing" id="Mpn-cD-mFN"/>
+                            <constraint firstItem="ewz-hC-W1p" firstAttribute="top" secondItem="SAl-Av-cL9" secondAttribute="bottom" id="XRv-oP-gMV"/>
+                            <constraint firstItem="ewz-hC-W1p" firstAttribute="leading" secondItem="xec-17-csa" secondAttribute="leading" id="oxw-6R-MXk"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aQN-MU-OLe"/>
+                    <connections>
+                        <outlet property="collectionView" destination="ewz-hC-W1p" id="BsB-6v-TVV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="udL-LX-RYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
