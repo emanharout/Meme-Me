@@ -11,6 +11,7 @@ import UIKit
 class SentMemesCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
@@ -55,11 +56,7 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionMemeCell", forIndexPath: indexPath) as! MemeCollectionViewCell
         
         let meme = memes[indexPath.item]
-        
-        cell.memeImage?.image = meme.image
-        print(meme.topText)
-        cell.topTextLabel?.text = meme.topText
-        cell.bottomTextLabel?.text = meme.bottomText
+        cell.memeImage?.image = meme.memedImage
         
         return cell
     }
