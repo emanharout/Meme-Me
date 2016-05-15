@@ -13,11 +13,12 @@ class MemeDetailViewController: UIViewController {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     var meme: Meme!
+    @IBOutlet weak var memeImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        memeImageView.image = meme.memedImage
     }
 
     override func didReceiveMemoryWarning() {

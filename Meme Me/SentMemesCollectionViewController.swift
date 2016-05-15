@@ -18,8 +18,6 @@ class SentMemesCollectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -30,7 +28,6 @@ class SentMemesCollectionViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
@@ -52,7 +49,8 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailVC = storyboard?.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
-        detailVC.meme = memes[indexPath.item]
+        let meme = memes[indexPath.item]
+        detailVC.meme = meme
         navigationController?.pushViewController(detailVC, animated: true)
     }
     

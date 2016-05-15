@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -123,8 +124,21 @@
                     <view key="view" contentMode="scaleToFill" id="LpP-tV-Tf8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="240" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="khl-N6-Qjx">
+                                <rect key="frame" x="180" y="236" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="khl-N6-Qjx" firstAttribute="centerY" secondItem="LpP-tV-Tf8" secondAttribute="centerYWithinMargins" id="RvK-7v-8UY"/>
+                            <constraint firstItem="khl-N6-Qjx" firstAttribute="centerX" secondItem="LpP-tV-Tf8" secondAttribute="centerX" id="r95-I9-iwF"/>
+                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="memeImageView" destination="khl-N6-Qjx" id="YP7-8G-u8Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9MJ-Xt-w7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
