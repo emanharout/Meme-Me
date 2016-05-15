@@ -51,7 +51,9 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
+        let detailVC = storyboard?.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        detailVC.meme = memes[indexPath.item]
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     

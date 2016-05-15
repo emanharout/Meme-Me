@@ -17,6 +17,7 @@
 		AB8B456A1CCCBD350027078A /* MemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B45691CCCBD350027078A /* MemeCell.swift */; };
 		AB8B456C1CCD9AA60027078A /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B456B1CCD9AA60027078A /* SentMemesCollectionViewController.swift */; };
 		AB8B456E1CCDA5040027078A /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B456D1CCDA5040027078A /* MemeCollectionViewCell.swift */; };
+		AB8B458F1CE81B500027078A /* MemeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B458E1CE81B4F0027078A /* MemeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		AB8B45691CCCBD350027078A /* MemeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeCell.swift; sourceTree = "<group>"; };
 		AB8B456B1CCD9AA60027078A /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
 		AB8B456D1CCDA5040027078A /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		AB8B458E1CE81B4F0027078A /* MemeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				AB8B45671CCC9CAF0027078A /* SentMemesViewController.swift */,
 				AB8B456B1CCD9AA60027078A /* SentMemesCollectionViewController.swift */,
 				AB6BA9BC1CA8E56F005ED446 /* MemeEditorViewController.swift */,
+				AB8B458E1CE81B4F0027078A /* MemeDetailViewController.swift */,
 				AB6BA9BE1CA8E56F005ED446 /* Main.storyboard */,
 				AB6BA9C11CA8E56F005ED446 /* Assets.xcassets */,
 				AB6BA9C31CA8E56F005ED446 /* LaunchScreen.storyboard */,
@@ -167,6 +170,7 @@
 				AB8B456E1CCDA5040027078A /* MemeCollectionViewCell.swift in Sources */,
 				AB6BA9BD1CA8E56F005ED446 /* MemeEditorViewController.swift in Sources */,
 				AB6BA9BB1CA8E56F005ED446 /* AppDelegate.swift in Sources */,
+				AB8B458F1CE81B500027078A /* MemeDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

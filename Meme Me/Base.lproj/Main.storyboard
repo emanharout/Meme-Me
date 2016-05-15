@@ -112,6 +112,24 @@
             </objects>
             <point key="canvasLocation" x="1643" y="268"/>
         </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="RFe-St-Scm">
+            <objects>
+                <viewController storyboardIdentifier="MemeDetailViewController" id="36I-nr-YOU" customClass="MemeDetailViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sdJ-Nf-xfN"/>
+                        <viewControllerLayoutGuide type="bottom" id="La0-YH-VhW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LpP-tV-Tf8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9MJ-Xt-w7c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1643" y="1117"/>
+        </scene>
         <!--Sent Memes View Controller-->
         <scene sceneID="NZw-Ds-oWS">
             <objects>
@@ -265,7 +283,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aQN-MU-OLe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vyk-gD-RC8"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="vyk-gD-RC8">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="presentation" id="Ynd-kP-wnQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ewz-hC-W1p" id="BsB-6v-TVV"/>
@@ -310,11 +332,11 @@
             </objects>
             <point key="canvasLocation" x="-887" y="769"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--List-->
         <scene sceneID="aA4-5J-Glo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YE9-IH-Xkr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" id="QhR-6m-h4T"/>
+                    <tabBarItem key="tabBarItem" title="List" id="QhR-6m-h4T"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oId-K2-bO2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -330,4 +352,7 @@
             <point key="canvasLocation" x="-3" y="268"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ynd-kP-wnQ"/>
+    </inferredMetricsTieBreakers>
 </document>
