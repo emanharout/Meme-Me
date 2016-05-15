@@ -21,7 +21,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var memeContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet var memeContainerWidthConstraint: NSLayoutConstraint!
     
-    
     var memedImage: UIImage!
     var deviceScreenWidth: CGFloat {
         return UIScreen.mainScreen().bounds.size.width
@@ -29,19 +28,16 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var deviceScreenHeight: CGFloat {
         return UIScreen.mainScreen().bounds.size.height
     }
-        
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : -5.0
     ]
-
     
     @IBAction func pickAnImage(sender: AnyObject) {
         selectImageSourceAlert()
     }
-    
     @IBAction func shareMeme(sender: AnyObject) {
         memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
@@ -63,12 +59,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
         bottomTextField.hidden = true
-        
-        // Remove later
-        memeImageViewWidthConstraint.constant = deviceScreenWidth
-        memeImageViewHeightConstraint.constant = deviceScreenHeight - 88.0
-        
-        
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -77,8 +67,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
-        // TODO: Make Status Bar Appear After Dismissing Modal VC (Image Picker Controller)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -92,6 +80,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillDisappear(animated)
         
         unsubscribeFromKeyboardNotifications()
+        unsubscribeFromOrientationNotification()
     }
     
     
@@ -149,6 +138,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return memedImage
     }
     
+    
+    // MARK: - Auto Layout Contraint Functions
+    
+    // Get Image Scaling Ratio (for Aspect Fit Mode)
+    func getAspectRatio() -> CGFloat {
+        let heightRatio = memeImageView.frame.height / memeImageView.image!.size.height
+        let widthRatio = memeImageView.frame.width / memeImageView.image!.size.width
+        let scaledRatio = min(heightRatio, widthRatio)
+        return scaledRatio
+    }
+    
     func resetImageAndContainerViewsToDefaultSize() {
         // Reset views to default size to fit any image size
         memeImageViewHeightConstraint.constant = deviceScreenHeight - 88.0
@@ -169,20 +169,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         self.view.layoutIfNeeded()
     }
     
+    // MARK: - Image Picker
     
-    // Image Picker
     func presentImagePicker(pickerStyle style: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = style
         
-        
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
-    
-
-    
-    // MARK: - ImagePicker Protocol
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -202,26 +197,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func getAspectRatio() -> CGFloat {
-        let heightRatio = memeImageView.frame.height / memeImageView.image!.size.height
-        let widthRatio = memeImageView.frame.width / memeImageView.image!.size.width
-        let scaledRatio = min(heightRatio, widthRatio)
-        return scaledRatio
-    }
-    
-    // MARK: - Keyboard Show/Hide Notification
+    // MARK: - Keyboard
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
             self.view.frame.origin.y = -getKeyboardHeight(notification)
         }
-        
     }
     
     func keyboardWillDisappear(notification: NSNotification) {
@@ -261,12 +247,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func prepareForOrientationChange() {
-        print("ORIENTATION CHANGED")
-        print("width: \(deviceScreenWidth)")
-        print("height: \(deviceScreenHeight)")
-        
-        
-        // If image present, adjust view sizes after orientation to scaled image size, otherwise default screen size
+        // If image present, adjust view sizes after orientation to scaled image size, otherwise set to default screen size.
         if memeImageView.image != nil {
             
             resetImageAndContainerViewsToDefaultSize()
