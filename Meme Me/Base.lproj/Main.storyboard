@@ -65,23 +65,31 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="402-wk-H5Q">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
-                                    <navigationItem title="Meme Editor" id="el4-Fl-PfJ"/>
+                                    <navigationItem title="Meme Editor" id="el4-Fl-PfJ">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="V1r-UW-9IO">
+                                            <connections>
+                                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="KpT-p6-9zi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2QQ-z1-WfM">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="53V-Xm-gMi"/>
                                     <barButtonItem systemItem="camera" id="kz1-4f-UVe">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="goM-3D-eKE"/>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="52T-UA-Hpz"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="flexibleSpace" id="cFx-VW-vNL"/>
-                                    <barButtonItem systemItem="action" id="V1r-UW-9IO">
+                                    <barButtonItem width="88" style="plain" systemItem="fixedSpace" id="eul-IG-eLD"/>
+                                    <barButtonItem title="Album" id="qyP-FS-MyU">
                                         <connections>
-                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="KpT-p6-9zi"/>
+                                            <action selector="pickAnImageFromLibrary:" destination="BYZ-38-t0r" id="eD2-Ru-8PV"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="yNA-vy-jzV"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -100,6 +108,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="9Ij-7U-cdW" id="C0c-lg-e00"/>
+                        <outlet property="cameraButton" destination="kz1-4f-UVe" id="sqG-dO-HPs"/>
                         <outlet property="memeContainerHeightConstraint" destination="GbG-V3-wlg" id="eXi-mQ-vJf"/>
                         <outlet property="memeContainerView" destination="8Ta-ps-hNe" id="zcg-Qr-jto"/>
                         <outlet property="memeContainerWidthConstraint" destination="6v9-QE-P4z" id="3DK-k9-PJX"/>
@@ -264,21 +273,39 @@
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GeR-1m-vYs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="105" height="120"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GeR-1m-vYs">
+                                                    <rect key="frame" x="0.0" y="8" width="105" height="112"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVJ-Nz-7kK">
+                                                    <rect key="frame" x="32" y="15" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi9-gJ-ffL">
+                                                    <rect key="frame" x="31" y="81" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="GeR-1m-vYs" firstAttribute="leading" secondItem="LGL-HO-9Ra" secondAttribute="leading" id="6tk-Vu-tse"/>
+                                            <constraint firstItem="GeR-1m-vYs" firstAttribute="top" secondItem="lVJ-Nz-7kK" secondAttribute="top" constant="-7" id="IPW-ed-KwD"/>
                                             <constraint firstAttribute="bottom" secondItem="GeR-1m-vYs" secondAttribute="bottom" id="SP8-Q8-D3b"/>
+                                            <constraint firstItem="Oi9-gJ-ffL" firstAttribute="bottom" secondItem="GeR-1m-vYs" secondAttribute="bottom" constant="-18" id="Yuw-at-aSY"/>
+                                            <constraint firstItem="Oi9-gJ-ffL" firstAttribute="centerX" secondItem="LGL-HO-9Ra" secondAttribute="centerX" id="lWG-uo-NDe"/>
                                             <constraint firstItem="GeR-1m-vYs" firstAttribute="top" secondItem="LGL-HO-9Ra" secondAttribute="topMargin" id="trD-EZ-pnY"/>
+                                            <constraint firstItem="lVJ-Nz-7kK" firstAttribute="centerX" secondItem="LGL-HO-9Ra" secondAttribute="centerX" id="ul2-h2-d8t"/>
                                             <constraint firstAttribute="trailing" secondItem="GeR-1m-vYs" secondAttribute="trailing" id="wN8-sk-K6u"/>
                                         </constraints>
                                         <size key="customSize" width="105" height="120"/>
                                         <connections>
+                                            <outlet property="bottomLabel" destination="Oi9-gJ-ffL" id="6aJ-Lo-xoQ"/>
                                             <outlet property="memeImage" destination="GeR-1m-vYs" id="KgK-WX-r17"/>
+                                            <outlet property="topLabel" destination="lVJ-Nz-7kK" id="U3q-wl-vWC"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

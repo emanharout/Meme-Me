@@ -20,6 +20,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var memeImageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet var memeContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet var memeContainerWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
     
     var memedImage: UIImage!
     var deviceScreenWidth: CGFloat {
@@ -35,9 +37,23 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         NSStrokeWidthAttributeName : -5.0
     ]
     
-    @IBAction func pickAnImage(sender: AnyObject) {
-        selectImageSourceAlert()
+    @IBAction func pickAnImageFromCamera(sender: AnyObject) {
+        //selectImageSourceAlert()
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+            
+        self.presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    @IBAction func pickAnImageFromLibrary(sender: AnyObject) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .PhotoLibrary
+        
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
     @IBAction func shareMeme(sender: AnyObject) {
         memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
@@ -67,6 +83,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -83,35 +101,65 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         unsubscribeFromOrientationNotification()
     }
     
+    // MARK: - Image Picker
     
-    // Select Image Alert
-    func selectImageSourceAlert() {
-        // Setup alert and actions
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-        let userLibrary = UIAlertAction(title: "Photo Library", style: .Default) {
-            _ in
-            self.presentImagePicker(pickerStyle: .PhotoLibrary)
-        }
-        let useCamera = UIAlertAction(title: "Camera", style: .Default) {
-            _ in
-            self.presentImagePicker(pickerStyle: .Camera)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        
-        
-        alert.addAction(userLibrary)
-        let cameraAvailable = UIImagePickerController.isSourceTypeAvailable(.Camera)
-        
-        // TODO: Create a switch statement that determines whether camera is available/we have permission to access it. Present regular Alert asking for permission if restricted.
-        if cameraAvailable {
-            alert.addAction(useCamera)
-        }
-        alert.addAction(cancelAction)
-        
-        presentViewController(alert, animated: true, completion: nil)
+    func presentImagePicker(pickerStyle style: UIImagePickerControllerSourceType) {
+//        let imagePicker = UIImagePickerController()
+//        imagePicker.delegate = self
+//        imagePicker.sourceType =
+//        
+//        self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    // MARK: - Meme
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            resetImageAndContainerViewsToDefaultSize()
+            
+            topTextField.hidden = false
+            bottomTextField.hidden = false
+            
+            memeImageView.image = image
+            adjustImageAndContainerViewToScaledImageSize()
+        }
+    }
+    
+    // Delete?
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // Select Image Alert
+//    func selectImageSourceAlert() {
+//        // Setup alert and actions
+//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+//        let userLibrary = UIAlertAction(title: "Photo Library", style: .Default) {
+//            _ in
+//            self.presentImagePicker(pickerStyle: .PhotoLibrary)
+//        }
+//        let useCamera = UIAlertAction(title: "Camera", style: .Default) {
+//            _ in
+//            self.presentImagePicker(pickerStyle: .Camera)
+//        }
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+//        
+//        
+//        alert.addAction(userLibrary)
+//        let cameraAvailable = UIImagePickerController.isSourceTypeAvailable(.Camera)
+//        
+//        // TODO: Create a switch statement that determines whether camera is available/we have permission to access it. Present regular Alert asking for permission if restricted.
+//        if cameraAvailable {
+//            alert.addAction(useCamera)
+//        }
+//        alert.addAction(cancelAction)
+//        
+//        presentViewController(alert, animated: true, completion: nil)
+//    }
+    
+    
+    
+    // MARK: - Generate Meme
     
     func save() {
         if memeImageView.image != nil {
@@ -167,34 +215,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         memeContainerHeightConstraint.constant = memeImageViewHeightConstraint.constant - 2.0
         memeContainerWidthConstraint.constant = memeImageViewWidthConstraint.constant - 2.0
         self.view.layoutIfNeeded()
-    }
-    
-    // MARK: - Image Picker
-    
-    func presentImagePicker(pickerStyle style: UIImagePickerControllerSourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = style
-        
-        self.presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            resetImageAndContainerViewsToDefaultSize()
-            
-            topTextField.hidden = false
-            bottomTextField.hidden = false
-            
-            memeImageView.image = image
-            adjustImageAndContainerViewToScaledImageSize()
-        }
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Keyboard

@@ -10,4 +10,9 @@ import UIKit
 
 class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var memeImage: UIImageView!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
+    
+    // TODO: set topLabel.attributedText property
+    
 }

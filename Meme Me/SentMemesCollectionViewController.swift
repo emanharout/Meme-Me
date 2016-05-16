@@ -42,7 +42,9 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionMemeCell", forIndexPath: indexPath) as! MemeCollectionViewCell
         
         let meme = memes[indexPath.item]
-        cell.memeImage?.image = meme.memedImage
+        cell.memeImage?.image = meme.image
+        cell.topLabel.text = meme.topText
+        cell.bottomLabel.text = meme.bottomText
         
         return cell
     }
