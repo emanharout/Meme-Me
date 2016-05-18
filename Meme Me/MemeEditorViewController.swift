@@ -42,7 +42,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .Camera
-            
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
     
@@ -60,11 +59,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         presentViewController(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
             _ in
-            self.save()
+            if self.memeImageView.image != nil {
+                self.save()
+            }
+            
             // TODO: Dismiss only ActivityVC, not MemeEditorVC
-            self.dismissViewControllerAnimated(true, completion: nil)
+            //self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
+
+    @IBAction func dismissViewController(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

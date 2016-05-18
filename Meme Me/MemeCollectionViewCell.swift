@@ -14,5 +14,4 @@ class MemeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bottomLabel: UILabel!
     
     // TODO: set topLabel.attributedText property
-    
 }
