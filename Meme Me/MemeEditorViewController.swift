@@ -22,7 +22,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var memeContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     
-    
     var memedImage: UIImage!
     var deviceScreenWidth: CGFloat {
         return UIScreen.mainScreen().bounds.size.width
@@ -69,7 +68,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     @IBAction func dismissViewController(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        defaultMemeContainerAndSubviewSettings()
+    }
+    
+    // Sets view sizes and textfield text to initial default settings
+    func defaultMemeContainerAndSubviewSettings() {
+        memeImageView.image = nil
+        topTextField.text = "TOP TEXT"
+        bottomTextField.text = "BOTTOM TEXT"
+        resetImageAndContainerViewsToDefaultSize()
     }
     
     
@@ -78,10 +85,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         topTextField.defaultTextAttributes = memeTextAttributes
         topTextField.textAlignment = .Center
-        topTextField.hidden = true
         bottomTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.textAlignment = .Center
-        bottomTextField.hidden = true
+        
+        defaultMemeContainerAndSubviewSettings()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -123,9 +130,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             resetImageAndContainerViewsToDefaultSize()
-            
-            topTextField.hidden = false
-            bottomTextField.hidden = false
             
             memeImageView.image = image
             adjustImageAndContainerViewToScaledImageSize()
