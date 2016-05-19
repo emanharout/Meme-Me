@@ -24,7 +24,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="750" placeholderIntrinsicHeight="750" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-9H-yty">
                                         <rect key="frame" x="-50" y="118" width="700" height="500"/>
-                                        <color key="backgroundColor" red="0.88235294119999996" green="0.34509803919999998" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="500" id="KpA-2V-eHB"/>
                                             <constraint firstAttribute="width" constant="700" id="f2U-o5-34T"/>
@@ -47,7 +47,7 @@
                                         </connections>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="yGf-9H-yty" firstAttribute="top" secondItem="VVa-Uu-1gP" secondAttribute="top" constant="-6" id="0Da-gF-zAW"/>
@@ -104,7 +104,7 @@
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="402-wk-H5Q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="4B0-2l-1Dl"/>
                             <constraint firstItem="2QQ-z1-WfM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DQE-Ip-yGr"/>
