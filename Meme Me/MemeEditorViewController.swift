@@ -145,6 +145,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }        
     }
 
+    // The following code is a tweaked version of what I found in stackoverflow.com
     func generateMemedImage() -> UIImage {
         // Create screenshot of memeContainerView and its subviews
         UIGraphicsBeginImageContextWithOptions(memeContainerView.bounds.size, true, 0.0)
@@ -178,6 +179,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Set memeContainerView and memeImageView to size of scaled meme image
     // Purpose is to screenshot only the image area and nothing more
     // and to have text fields appear on image since container view is set to scaled image size
+    // The following code is a tweaked version of what I found in stackoverflow.com
     func adjustImageAndContainerViewToScaledImageSize() {
         // Adjust imageView size to match aspect fill image size
         let scaledRatio = getAspectRatio()
