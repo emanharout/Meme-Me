@@ -46,29 +46,6 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="RyT-Xh-5P4"/>
                                         </connections>
                                     </textField>
-                                    <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="402-wk-H5Q">
-                                        <rect key="frame" x="0.0" y="68" width="600" height="44"/>
-                                        <items>
-                                            <navigationItem title="Meme Editor" id="el4-Fl-PfJ">
-                                                <barButtonItem key="leftBarButtonItem" style="plain" id="zrw-a4-xV8">
-                                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CYZ-pI-IFx">
-                                                        <rect key="frame" x="20" y="11" width="35" height="22"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <state key="normal" title="Back"/>
-                                                        <connections>
-                                                            <action selector="dismissViewController:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5yr-RN-DKa"/>
-                                                        </connections>
-                                                    </button>
-                                                </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" systemItem="action" id="V1r-UW-9IO">
-                                                    <connections>
-                                                        <action selector="shareMeme:" destination="BYZ-38-t0r" id="KpT-p6-9zi"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -85,6 +62,23 @@
                                     <constraint firstItem="9Ij-7U-cdW" firstAttribute="bottom" secondItem="yGf-9H-yty" secondAttribute="bottom" constant="-6" id="z5O-4A-IHy"/>
                                 </constraints>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="402-wk-H5Q">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Meme Editor" id="el4-Fl-PfJ">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jKr-3B-S8c">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="BYZ-38-t0r" id="6EQ-1b-5iH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="V1r-UW-9IO">
+                                            <connections>
+                                                <action selector="shareMeme:" destination="BYZ-38-t0r" id="KpT-p6-9zi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2QQ-z1-WfM">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -106,10 +100,13 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="402-wk-H5Q" secondAttribute="trailing" id="7fC-VJ-IZa"/>
                             <constraint firstItem="2QQ-z1-WfM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DQE-Ip-yGr"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2QQ-z1-WfM" secondAttribute="bottom" id="Rqh-tv-6LV"/>
                             <constraint firstAttribute="trailing" secondItem="2QQ-z1-WfM" secondAttribute="trailing" id="ZC3-Pu-GuP"/>
+                            <constraint firstItem="402-wk-H5Q" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hbB-Pn-hFU"/>
                             <constraint firstItem="8Ta-ps-hNe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="iyo-zr-UeV"/>
+                            <constraint firstItem="402-wk-H5Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nV0-Rc-Ldc"/>
                             <constraint firstItem="8Ta-ps-hNe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sC3-bZ-EDc"/>
                         </constraints>
                     </view>

@@ -61,12 +61,14 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             _ in
             if self.memeImageView.image != nil {
                 self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
 
-    @IBAction func dismissViewController(sender: AnyObject) {
+    @IBAction func cancelButton(sender: AnyObject) {
         defaultMemeContainerAndSubviewSettings()
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     // Sets view sizes and textfield text to initial default settings
