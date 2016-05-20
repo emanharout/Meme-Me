@@ -49,16 +49,18 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.delegate = self
         imagePicker.sourceType = .PhotoLibrary
 
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
 
     // Sharesheet function saves meme automatically
     @IBAction func shareMeme(sender: AnyObject) {
         memedImage = generateMemedImage()
+        
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         presentViewController(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
             _ in
+            // TODO: utilize completed parameter here
             if self.memeImageView.image != nil {
                 self.save()
             }
@@ -67,6 +69,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     @IBAction func dismissViewController(sender: AnyObject) {
         defaultMemeContainerAndSubviewSettings()
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     // Sets view sizes and textfield text to initial default settings
@@ -157,7 +160,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     // MARK: - Auto Layout Contraint Functions
 
-    // Get Image Scaling Ratio (for Aspect Fit Mode)
+    /// Get Image Scaling Ratio (for Aspect Fit Mode)
     func getAspectRatio() -> CGFloat {
         let heightRatio = memeImageView.frame.height / memeImageView.image!.size.height
         let widthRatio = memeImageView.frame.width / memeImageView.image!.size.width
@@ -165,7 +168,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         return scaledRatio
     }
 
-    // Set imageview and container view to device screen size
+    /// Sets imageview and container view to device screen size
     func resetImageAndContainerViewsToDefaultSize() {
         // Reset views to default size to fit any image size
         memeImageViewHeightConstraint.constant = deviceScreenHeight - 88.0
@@ -175,9 +178,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         view.layoutIfNeeded()
     }
 
-    // Set memeContainerView and memeImageView to size of scaled meme image
-    // Purpose is to screenshot only the image area and nothing more
-    // and to have text fields appear on image since container view is set to scaled image size
+    /// Set memeContainerView and memeImageView to size of scaled meme image.
+    /// Purpose is to screenshot only the image area,
+    /// and to have text fields appear on image since constrainted to container view which is being set to imageview size
     func adjustImageAndContainerViewToScaledImageSize() {
         // Adjust imageView size to match aspect fill image size
         let scaledRatio = getAspectRatio()
@@ -204,7 +207,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     func keyboardWillDisappear(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y = 0
         }
     }
 
