@@ -197,13 +197,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cAQ-ju-A5r">
                                                     <rect key="frame" x="104" y="4" width="488" height="88"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-18-uib">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-18-uib">
                                                             <rect key="frame" x="0.0" y="0.0" width="42" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-wU-Lel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-wU-Lel">
                                                             <rect key="frame" x="0.0" y="47" width="42" height="41"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -360,7 +360,7 @@
         <scene sceneID="5yy-63-IF8">
             <objects>
                 <navigationController id="zLz-A3-4pg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Collection" id="hE8-DJ-UXY"/>
+                    <tabBarItem key="tabBarItem" title="Collection" image="CollectionView" id="hE8-DJ-UXY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q4t-9g-jCW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -395,7 +395,7 @@
         <scene sceneID="aA4-5J-Glo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YE9-IH-Xkr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" id="QhR-6m-h4T"/>
+                    <tabBarItem key="tabBarItem" title="List" image="ListView" id="QhR-6m-h4T"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="oId-K2-bO2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -411,6 +411,10 @@
             <point key="canvasLocation" x="-3" y="268"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CollectionView" width="30" height="30"/>
+        <image name="ListView" width="30" height="30"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="s5w-lp-em9"/>
     </inferredMetricsTieBreakers>
