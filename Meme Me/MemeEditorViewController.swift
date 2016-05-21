@@ -68,7 +68,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     @IBAction func dismissViewController(sender: AnyObject) {
-        defaultMemeContainerAndSubviewSettings()
         dismissViewControllerAnimated(true, completion: nil)
     }
 
