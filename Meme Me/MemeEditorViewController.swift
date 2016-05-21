@@ -12,6 +12,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     @IBOutlet weak var memeContainerView: UIView!
     @IBOutlet weak var memeImageView: UIImageView!
+    // TODO: Replace textfields with textviews for multiline text editing support
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var memeImageViewHeightConstraint: NSLayoutConstraint!
@@ -19,7 +20,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var memeContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet var memeContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    
+
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
@@ -56,7 +57,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Sharesheet function saves meme automatically
     @IBAction func shareMeme(sender: AnyObject) {
         memedImage = generateMemedImage()
-        
+
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         presentViewController(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
@@ -107,7 +108,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     // Setup notifications for orientation change and keyboard detection
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         subscribeToKeyboardNotification()
         subscribeToOrientationNotification()
     }

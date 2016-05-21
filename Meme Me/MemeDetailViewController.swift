@@ -20,12 +20,4 @@ class MemeDetailViewController: UIViewController {
 
         memeImageView.image = meme.memedImage
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-
-
 }

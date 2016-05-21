@@ -164,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="1643" y="1117"/>
         </scene>
-        <!--Sent Memes View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="NZw-Ds-oWS">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="siU-hR-svj" customClass="SentMemesViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
@@ -194,17 +194,17 @@
                                                         <constraint firstAttribute="width" constant="88" id="XZ1-Hu-4hz"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cAQ-ju-A5r">
-                                                    <rect key="frame" x="104" y="19" width="488" height="57"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="cAQ-ju-A5r">
+                                                    <rect key="frame" x="104" y="4" width="488" height="88"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-18-uib">
-                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-18-uib">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="32"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-wU-Lel">
-                                                            <rect key="frame" x="0.0" y="36" width="42" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ff9-wU-Lel">
+                                                            <rect key="frame" x="0.0" y="47" width="42" height="41"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -216,6 +216,7 @@
                                                 <constraint firstItem="1Pa-lI-EwJ" firstAttribute="centerY" secondItem="VCv-jU-suk" secondAttribute="centerY" id="06W-Rq-3uG"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="cAQ-ju-A5r" secondAttribute="trailing" id="PAz-DD-lIT"/>
                                                 <constraint firstItem="cAQ-ju-A5r" firstAttribute="centerY" secondItem="VCv-jU-suk" secondAttribute="centerY" id="YNf-g4-iwH"/>
+                                                <constraint firstItem="cAQ-ju-A5r" firstAttribute="height" secondItem="1Pa-lI-EwJ" secondAttribute="height" id="p8k-k7-aLf"/>
                                                 <constraint firstItem="cAQ-ju-A5r" firstAttribute="leading" secondItem="1Pa-lI-EwJ" secondAttribute="trailing" constant="8" id="rIU-ft-WjN"/>
                                                 <constraint firstItem="1Pa-lI-EwJ" firstAttribute="leading" secondItem="VCv-jU-suk" secondAttribute="leadingMargin" id="yeJ-XJ-RYf"/>
                                             </constraints>
@@ -241,7 +242,7 @@
                             <constraint firstAttribute="trailing" secondItem="MsS-ui-NZC" secondAttribute="trailing" id="hcH-XC-ypg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dq6-U4-3Ru">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="dq6-U4-3Ru">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="tCZ-9D-tAk">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" id="s5w-lp-em9"/>
@@ -256,7 +257,7 @@
             </objects>
             <point key="canvasLocation" x="821" y="268"/>
         </scene>
-        <!--Sent Memes Collection View Controller-->
+        <!--Sent Memes-->
         <scene sceneID="1ev-gN-tGN">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="wWa-cv-Y7T" customClass="SentMemesCollectionViewController" customModule="Meme_Me" customModuleProvider="target" sceneMemberID="viewController">
@@ -339,7 +340,7 @@
                             <constraint firstAttribute="trailing" secondItem="ewz-hC-W1p" secondAttribute="trailing" id="Xkg-Tc-E0u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="aQN-MU-OLe">
+                    <navigationItem key="navigationItem" title="Sent Memes" id="aQN-MU-OLe">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vyk-gD-RC8">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" id="Ynd-kP-wnQ"/>
