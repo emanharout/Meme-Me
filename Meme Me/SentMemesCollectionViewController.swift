@@ -11,6 +11,12 @@ import UIKit
 class SentMemesCollectionViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 14)!,
+        NSStrokeWidthAttributeName : -2.0
+    ]
     
     var memes: [Meme] {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
@@ -29,7 +35,6 @@ class SentMemesCollectionViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
 }
 
 extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -43,8 +48,8 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
         
         let meme = memes[indexPath.item]
         cell.memeImage?.image = meme.image
-        cell.topLabel.text = meme.topText
-        cell.bottomLabel.text = meme.bottomText
+        cell.topLabel.attributedText = NSAttributedString(string: meme.topText, attributes: memeTextAttributes)
+        cell.bottomLabel.attributedText = NSAttributedString(string: meme.bottomText, attributes: memeTextAttributes)
         
         return cell
     }

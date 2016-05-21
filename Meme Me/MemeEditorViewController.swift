@@ -19,6 +19,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet var memeContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet var memeContainerWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName : UIColor.blackColor(),
+        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName : -5.0
+    ]
 
     var memedImage: UIImage!
     var deviceScreenWidth: CGFloat {
@@ -27,12 +34,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     var deviceScreenHeight: CGFloat {
         return UIScreen.mainScreen().bounds.size.height
     }
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : -5.0
-    ]
 
     // User sets image by taking a photo
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
@@ -59,9 +60,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         presentViewController(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
-            _ in
+            (activityType, completed, returnedItems, activityError) in
             // TODO: utilize completed parameter here
-            if self.memeImageView.image != nil {
+            if self.memeImageView.image != nil && completed {
                 self.save()
             }
         }
