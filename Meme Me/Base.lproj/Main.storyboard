@@ -268,7 +268,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ewz-hC-W1p">
-                                <rect key="frame" x="20" y="64" width="560" height="487"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="9N9-Xy-YYc">
                                     <size key="itemSize" width="105" height="120"/>
@@ -332,10 +332,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ewz-hC-W1p" firstAttribute="leading" secondItem="xec-17-csa" secondAttribute="leading" id="2yY-Hh-DS5"/>
                             <constraint firstItem="xEa-BA-e4w" firstAttribute="top" secondItem="ewz-hC-W1p" secondAttribute="bottom" id="KAm-US-avv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ewz-hC-W1p" secondAttribute="trailing" id="Mpn-cD-mFN"/>
                             <constraint firstItem="ewz-hC-W1p" firstAttribute="top" secondItem="SAl-Av-cL9" secondAttribute="bottom" id="XRv-oP-gMV"/>
-                            <constraint firstItem="ewz-hC-W1p" firstAttribute="leading" secondItem="xec-17-csa" secondAttribute="leadingMargin" id="oxw-6R-MXk"/>
+                            <constraint firstAttribute="trailing" secondItem="ewz-hC-W1p" secondAttribute="trailing" id="Xkg-Tc-E0u"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aQN-MU-OLe">
@@ -347,6 +347,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="ewz-hC-W1p" id="BsB-6v-TVV"/>
+                        <outlet property="flowLayout" destination="9N9-Xy-YYc" id="dpn-cy-2k9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="udL-LX-RYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
