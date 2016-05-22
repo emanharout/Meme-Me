@@ -38,20 +38,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     // User sets image by taking a photo
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
-        //selectImageSourceAlert()
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .Camera
-        self.presentViewController(imagePicker, animated: true, completion: nil)
+        setupImagePicker(.Camera)
     }
 
     // User selects image from Photo Library
     @IBAction func pickAnImageFromLibrary(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .PhotoLibrary
-
-        presentViewController(imagePicker, animated: true, completion: nil)
+        setupImagePicker(.PhotoLibrary)
     }
 
     // Sharesheet function saves meme automatically
@@ -62,7 +54,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         presentViewController(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
             (activityType, completed, returnedItems, activityError) in
-            // TODO: utilize completed parameter here
             if self.memeImageView.image != nil && completed {
                 self.save()
             }
@@ -132,6 +123,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
     }
 
+    // Setup Image Picker
+    func setupImagePicker(sourceType: UIImagePickerControllerSourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = sourceType
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+
     // Dismiss View Controller when user cancels image selection
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -174,7 +174,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Reset views to default size to fit any image size
         memeImageViewHeightConstraint.constant = deviceScreenHeight - 88.0
         memeImageViewWidthConstraint.constant = deviceScreenWidth
-        memeContainerHeightConstraint.constant = memeImageViewHeightConstraint.constant - 88.0
+        memeContainerHeightConstraint.constant = memeImageViewHeightConstraint.constant
         memeContainerWidthConstraint.constant = memeImageViewWidthConstraint.constant
         view.layoutIfNeeded()
     }
@@ -191,7 +191,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         // Adjust memeContainer size to match memeImageView size
         memeContainerHeightConstraint.constant = memeImageViewHeightConstraint.constant - 2.0
         memeContainerWidthConstraint.constant = memeImageViewWidthConstraint.constant - 2.0
-        self.view.layoutIfNeeded()
+        view.layoutIfNeeded()
     }
 
     // MARK: - Keyboard Functions
@@ -202,7 +202,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
-            self.view.frame.origin.y = -getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
 
