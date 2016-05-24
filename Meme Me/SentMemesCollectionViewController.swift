@@ -39,10 +39,6 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDeleg
 
         collectionView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {

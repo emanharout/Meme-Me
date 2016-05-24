@@ -55,6 +55,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         activityViewController.completionWithItemsHandler = {
             (activityType, completed, returnedItems, activityError) in
             if self.memeImageView.image != nil && completed {
+                self.dismissViewControllerAnimated(true, completion: nil)
                 self.save()
             }
         }
@@ -163,8 +164,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     /// Get Image Scaling Ratio (for Aspect Fit Mode)
     func getAspectRatio() -> CGFloat {
-        let heightRatio = memeImageView.frame.height / memeImageView.image!.size.height
-        let widthRatio = memeImageView.frame.width / memeImageView.image!.size.width
+        let heightRatio = memeImageView.frame.height / (memeImageView.image?.size.height)!
+        let widthRatio = memeImageView.frame.width / (memeImageView.image?.size.width)!
         let scaledRatio = min(heightRatio, widthRatio)
         return scaledRatio
     }

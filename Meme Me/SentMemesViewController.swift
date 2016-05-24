@@ -25,10 +25,6 @@ class SentMemesViewController: UIViewController {
         // TODO: Load only new data
         tableView.reloadData()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
 
 extension SentMemesViewController: UITableViewDelegate, UITableViewDataSource {
