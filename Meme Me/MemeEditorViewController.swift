@@ -139,6 +139,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     // MARK: - Generate Meme
+	// TODO: Refactor
     func save() {
         if memeImageView.image != nil {
             //Create a Meme object
@@ -195,6 +196,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         view.layoutIfNeeded()
     }
 
+}
+
+// MARK: Notifications
+extension MemeEditorViewController {
     // MARK: - Keyboard Functions
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

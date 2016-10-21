@@ -11,7 +11,6 @@ import UIKit
 class SentMemesCollectionViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.black,
         NSForegroundColorAttributeName : UIColor.white,
@@ -20,6 +19,7 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDeleg
     ] as [String : Any]
 
     var memes: [Meme] {
+		// TODO: Refactor
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
 
@@ -36,7 +36,6 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDeleg
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         collectionView.reloadData()
     }
 }
@@ -50,7 +49,7 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionMemeCell", for: indexPath) as! MemeCollectionViewCell
 
-        let meme = memes[(indexPath as NSIndexPath).item]
+        let meme = memes[indexPath.item]
         cell.memeImage?.image = meme.image
         cell.topLabel.attributedText = NSAttributedString(string: meme.topText, attributes: memeTextAttributes)
         cell.bottomLabel.attributedText = NSAttributedString(string: meme.bottomText, attributes: memeTextAttributes)
@@ -60,7 +59,7 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        let meme = memes[(indexPath as NSIndexPath).item]
+        let meme = memes[indexPath.item]
         detailVC.meme = meme
         navigationController?.pushViewController(detailVC, animated: true)
     }

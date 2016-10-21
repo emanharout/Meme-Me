@@ -9,12 +9,14 @@
 import UIKit
 
 class MemeDetailViewController: UIViewController {
+	
+	@IBOutlet weak var memeImageView: UIImageView!
     var memes: [Meme] {
+		// TODO: Refactor
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
     var meme: Meme!
-    @IBOutlet weak var memeImageView: UIImageView!
-
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 

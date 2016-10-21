@@ -11,6 +11,7 @@ import UIKit
 class SentMemesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
+	// TODO: Refactor
     var memes: [Meme] {
         return (UIApplication.shared.delegate as! AppDelegate).memes
     }
@@ -28,14 +29,13 @@ class SentMemesViewController: UIViewController {
 }
 
 extension SentMemesViewController: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        let meme = memes[(indexPath as NSIndexPath).row]
+        let meme = memes[indexPath.row]
         detailVC.meme = meme
 
         navigationController?.pushViewController(detailVC, animated: true)
@@ -43,7 +43,7 @@ extension SentMemesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeCell", for: indexPath) as! MemeCell
-        let meme = memes[(indexPath as NSIndexPath).row]
+        let meme = memes[indexPath.row]
 
         cell.memeTopLabel?.text = meme.topText
         cell.memeBottomLabel?.text = meme.bottomText
@@ -55,5 +55,4 @@ extension SentMemesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 96.0
     }
-
 }
