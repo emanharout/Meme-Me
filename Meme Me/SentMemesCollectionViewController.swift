@@ -13,14 +13,14 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDeleg
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
 
     let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSStrokeColorAttributeName : UIColor.black,
+        NSForegroundColorAttributeName : UIColor.white,
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 14)!,
         NSStrokeWidthAttributeName : -2.0
-    ]
+    ] as [String : Any]
 
     var memes: [Meme] {
-        return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
+        return (UIApplication.shared.delegate as! AppDelegate).memes
     }
 
     override func viewDidLoad() {
@@ -31,10 +31,10 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDeleg
 
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         collectionView.reloadData()
@@ -43,14 +43,14 @@ class SentMemesCollectionViewController: UIViewController, UICollectionViewDeleg
 
 extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memes.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionMemeCell", forIndexPath: indexPath) as! MemeCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionMemeCell", for: indexPath) as! MemeCollectionViewCell
 
-        let meme = memes[indexPath.item]
+        let meme = memes[(indexPath as NSIndexPath).item]
         cell.memeImage?.image = meme.image
         cell.topLabel.attributedText = NSAttributedString(string: meme.topText, attributes: memeTextAttributes)
         cell.bottomLabel.attributedText = NSAttributedString(string: meme.bottomText, attributes: memeTextAttributes)
@@ -58,9 +58,9 @@ extension SentMemesCollectionViewController: UICollectionViewDelegate, UICollect
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let detailVC = storyboard?.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
-        let meme = memes[indexPath.item]
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        let meme = memes[(indexPath as NSIndexPath).item]
         detailVC.meme = meme
         navigationController?.pushViewController(detailVC, animated: true)
     }

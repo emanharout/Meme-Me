@@ -22,47 +22,47 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var cameraButton: UIBarButtonItem!
 
     let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
+        NSStrokeColorAttributeName : UIColor.black,
+        NSForegroundColorAttributeName : UIColor.white,
         NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName : -5.0
-    ]
+    ] as [String : Any]
 
     var memedImage: UIImage!
     var deviceScreenWidth: CGFloat {
-        return UIScreen.mainScreen().bounds.size.width
+        return UIScreen.main.bounds.size.width
     }
     var deviceScreenHeight: CGFloat {
-        return UIScreen.mainScreen().bounds.size.height
+        return UIScreen.main.bounds.size.height
     }
 
     // User sets image by taking a photo
-    @IBAction func pickAnImageFromCamera(sender: AnyObject) {
-        setupImagePicker(.Camera)
+    @IBAction func pickAnImageFromCamera(_ sender: AnyObject) {
+        setupImagePicker(.camera)
     }
 
     // User selects image from Photo Library
-    @IBAction func pickAnImageFromLibrary(sender: AnyObject) {
-        setupImagePicker(.PhotoLibrary)
+    @IBAction func pickAnImageFromLibrary(_ sender: AnyObject) {
+        setupImagePicker(.photoLibrary)
     }
 
     // Sharesheet function saves meme automatically
-    @IBAction func shareMeme(sender: AnyObject) {
+    @IBAction func shareMeme(_ sender: AnyObject) {
         memedImage = generateMemedImage()
 
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        presentViewController(activityViewController, animated: true, completion: nil)
+        present(activityViewController, animated: true, completion: nil)
         activityViewController.completionWithItemsHandler = {
             (activityType, completed, returnedItems, activityError) in
             if self.memeImageView.image != nil && completed {
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
                 self.save()
             }
         }
     }
 
-    @IBAction func dismissViewController(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismissViewController(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 
     // Sets view sizes and textfield text to initial default settings
@@ -78,34 +78,34 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
 
         topTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .Center
+        topTextField.textAlignment = .center
         bottomTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.textAlignment = .Center
+        bottomTextField.textAlignment = .center
     
         defaultMemeContainerAndSubviewSettings()
     }
 
     // Hide statusbar
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
 
     // Enable camera button only if device has camera
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(.Camera)
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
 
     // Setup notifications for orientation change and keyboard detection
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         subscribeToKeyboardNotification()
         subscribeToOrientationNotification()
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         unsubscribeFromKeyboardNotifications()
@@ -113,8 +113,8 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     // MARK: - Image Picker
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
 
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             resetImageAndContainerViewsToDefaultSize()
@@ -125,17 +125,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     // Setup Image Picker
-    func setupImagePicker(sourceType: UIImagePickerControllerSourceType) {
+    func setupImagePicker(_ sourceType: UIImagePickerControllerSourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = sourceType
         
-        presentViewController(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
 
     // Dismiss View Controller when user cancels image selection
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Generate Meme
@@ -145,7 +145,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: memeImageView.image!, memedImage: memedImage)
 
             // Save to memes array
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.memes.append(meme)
         }        
     }
@@ -153,11 +153,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func generateMemedImage() -> UIImage {
         // Create screenshot of memeContainerView and its subviews
         UIGraphicsBeginImageContextWithOptions(memeContainerView.bounds.size, true, 0.0)
-        memeContainerView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        memeContainerView.layer.render(in: UIGraphicsGetCurrentContext()!)
         let memedImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
-        return memedImage
+        return memedImage!
     }
 
     // MARK: - Auto Layout Contraint Functions
@@ -196,47 +196,47 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
     // MARK: - Keyboard Functions
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
-    func keyboardWillShow(notification: NSNotification) {
-        if bottomTextField.isFirstResponder() {
+    func keyboardWillShow(_ notification: Notification) {
+        if bottomTextField.isFirstResponder {
             view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
 
-    func keyboardWillDisappear(notification: NSNotification) {
-        if bottomTextField.isFirstResponder() {
+    func keyboardWillDisappear(_ notification: Notification) {
+        if bottomTextField.isFirstResponder {
             view.frame.origin.y = 0
         }
     }
 
-    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        let userInfo = notification.userInfo
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        let userInfo = (notification as NSNotification).userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.CGRectValue().height
+        return keyboardSize.cgRectValue.height
     }
 
     func subscribeToKeyboardNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillDisappear(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillDisappear(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     func unsubscribeFromKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name:
-            UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name:
+            NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
     // MARK: - Device Orientation Notifications
     func subscribeToOrientationNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.prepareForOrientationChange), name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MemeEditorViewController.prepareForOrientationChange), name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
     }
 
     func unsubscribeFromOrientationNotification() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidChangeStatusBarOrientationNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidChangeStatusBarOrientation, object: nil)
     }
 
     func prepareForOrientationChange() {
